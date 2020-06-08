@@ -13,10 +13,10 @@ parser.add_argument('--limit')
 args = parser.parse_args()
 
 dbconfig = {
-  'user': 'admin',
-  'password': 'qubole123',
-  'host': 'quboledb.cttgevjppcjr.us-east-1.rds.amazonaws.com',
-  'database': 'datacoral',
+  'user': 'myuser',
+  'password': 'mypassword',
+  'host': 'myhost',
+  'database': 'testdb',
   'raise_on_warnings': True
 }
 

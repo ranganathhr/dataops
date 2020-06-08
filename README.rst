@@ -14,7 +14,7 @@ Prerequisites
 
 How to run
 -------------
-Synatax:
+* edit dataops.py file and modify dbconfigs as per your MySQL database
 
 * To create a table and generate random data. limit indicates the number of records to be generated
 
