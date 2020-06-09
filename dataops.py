@@ -12,9 +12,9 @@ args = parser.parse_args()
 
 fake = Faker()
 dbconfig = {
-    'user': 'admin',
-    'password': 'qubole123',
-    'host': 'quboledb.cttgevjppcjr.us-east-1.rds.amazonaws.com',
+    'user': 'myuser',
+    'password': '****',
+    'host': 'myhost',
     'database': 'test',
     'raise_on_warnings': True
     }
