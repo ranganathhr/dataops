@@ -15,7 +15,7 @@ def runbvt():
     elif 'darwin' in sys.platform:
         driverpath = '/Library/simba/prestoodbc/lib/libprestoodbc_sbu.dylib'
 
-    connection_string = 'DRIVER={{{driverpath}}};HOST={host};CATALOG={catalog};SCHEMA={dbname};TimeZoneID={timezone};LOGLEVEL=6;LOGPATH={driverlog};'.format(driverpath=driverpath, host=args.host, catalog=args.catalog, dbname=args.dbname, timezone='UCT', driverlog=odbc_logpath)
+    connection_string = 'DRIVER={{{driverpath}}};HOST={host};CATALOG={catalog};SCHEMA={dbname};TimeZoneID={timezone};LOGLEVEL=6;LOGPATH={driverlog};'.format(driverpath=driverpath, host=args.host, catalog=args.catalog, dbname=args.dbname, timezone='UTC', driverlog=odbc_logpath)
     if args.ssl:
         connection_string += 'PORT=8443;'
         connection_string += 'SSL=1;'
