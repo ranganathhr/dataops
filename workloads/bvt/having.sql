@@ -1,0 +1,1 @@
+SELECT * from shipping HAVING package_weight > 100 and destination_state = 'Connecticut'

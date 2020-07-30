@@ -1,0 +1,1 @@
+SELECT * from shipping ORDER BY package_weight
