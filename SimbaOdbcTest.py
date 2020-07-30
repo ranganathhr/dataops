@@ -3,14 +3,6 @@ import argparse
 import pyodbc
 import sys
 
-parser = argparse.ArgumentParser(description='Driver Functionality Test Suite')
-parser.add_argument('--catalog', help='Driver flag to set the catalog name')
-parser.add_argument('--dbname', help='The dbname which contains the tpcds tables of the required scale in case of tpcds runs')
-parser.add_argument('--host', help='hostname')
-parser.add_argument('--ssl', action='store_true', help='SSL')
-parser.add_argument('--cert', help='SSL cert path')
-args = parser.parse_args()
-
 
 def runbvt():
     root_dir = os.path.dirname(os.path.abspath(__file__))
@@ -46,5 +38,12 @@ def runbvt():
                 print(pye)
 
 
-if __name__ == "main":
-    runbvt()
+parser = argparse.ArgumentParser(description='Driver Functionality Test Suite')
+parser.add_argument('--catalog', help='Driver flag to set the catalog name')
+parser.add_argument('--dbname', help='The dbname which contains the tpcds tables of the required scale in case of tpcds runs')
+parser.add_argument('--host', help='hostname')
+parser.add_argument('--ssl', action='store_true', help='SSL')
+parser.add_argument('--cert', help='SSL cert path')
+args = parser.parse_args()
+
+runbvt()
