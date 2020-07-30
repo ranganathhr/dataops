@@ -24,10 +24,13 @@ def runbvt():
     elif 'darwin' in sys.platform:
         driverpath = '/Library/simba/prestoodbc/lib/libprestoodbc_sbu.dylib'
 
-    connection_string = 'DRIVER={{{driverpath}}};HOST={host};PORT={port};CATALOG={catalog};SCHEMA={dbname};LOGLEVEL=6;LOGPATH={driverlog};'.format(driverpath=driverpath, host=args.host, port=args.port, catalog=args.catalog, dbname=args.dbname, driverlog=odbc_logpath)
+    connection_string = 'DRIVER={{{driverpath}}};HOST={host};CATALOG={catalog};SCHEMA={dbname};LOGLEVEL=6;LOGPATH={driverlog};'.format(driverpath=driverpath, host=args.host, port=args.port, catalog=args.catalog, dbname=args.dbname, driverlog=odbc_logpath)
     if args.ssl:
+        connection_string += 'PORT=8443;'
         connection_string += 'SSL=1;'
-        connection_string += 'TRUSTEDCERTS={cert}'.format(cert=args.cert)
+        connection_string += 'TRUSTEDCERTS={cert};'.format(cert=args.cert)
+    else:
+        connection_string += 'PORT=8080;'
 
     conn = pyodbc.connect(connection_string, autocommit=True)
     cursor = conn.cursor()
