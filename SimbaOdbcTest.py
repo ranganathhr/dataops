@@ -15,7 +15,7 @@ def runbvt():
     elif 'darwin' in sys.platform:
         driverpath = '/Library/simba/prestoodbc/lib/libprestoodbc_sbu.dylib'
 
-    connection_string = 'DRIVER={{{driverpath}}};HOST={host};CATALOG={catalog};SCHEMA={dbname};LOGLEVEL=6;LOGPATH={driverlog};'.format(driverpath=driverpath, host=args.host, port=args.port, catalog=args.catalog, dbname=args.dbname, driverlog=odbc_logpath)
+    connection_string = 'DRIVER={{{driverpath}}};HOST={host};CATALOG={catalog};SCHEMA={dbname};TimeZoneID={timezone};LOGLEVEL=6;LOGPATH={driverlog};'.format(driverpath=driverpath, host=args.host, catalog=args.catalog, dbname=args.dbname, timezone='UCT', driverlog=odbc_logpath)
     if args.ssl:
         connection_string += 'PORT=8443;'
         connection_string += 'SSL=1;'
@@ -25,15 +25,16 @@ def runbvt():
 
     conn = pyodbc.connect(connection_string, autocommit=True)
     cursor = conn.cursor()
-    wrt = open(result_path + '/bvtresult.out', 'a+')
+    wrt = open(result_path + '/bvtresult.out', 'w+')
     for file in os.listdir(bvt_workload):
-        with open(file, 'r').read() as sql:
+        with open(bvt_workload + "/" + file, 'r') as f:
             try:
+                sql = f.read()
                 cursor.execute(str(sql).replace(';', ''))
-                wrt.write(file)
+                wrt.write(file + '\n')
                 for row in cursor.fetchall():
-                    wrt.write(str(row))
-                wrt.write('='*50)
+                    wrt.write(str(row) + '\n')
+                wrt.write('='*50 + '\n')
             except pyodbc.Error as pye:
                 print(pye)
 
