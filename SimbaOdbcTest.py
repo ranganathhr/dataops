@@ -11,7 +11,7 @@ def runbvt():
     result_path = os.path.join(root_dir, 'result/bvt')
 
     if 'linux' in sys.platform:
-        driverpath = ''
+        driverpath = '/opt/simba/prestoodbc/lib/64/libprestoodbc_sb64.so'
     elif 'darwin' in sys.platform:
         driverpath = '/Library/simba/prestoodbc/lib/libprestoodbc_sbu.dylib'
 
